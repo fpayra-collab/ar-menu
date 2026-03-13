@@ -6,15 +6,15 @@ DISHES = {
     "burger": {
         "slug": "burger",
         "name": "Signature Burger",
-        "glb": "https://drive.google.com/uc?export=download&id=172b0p2P9wbCHkH9Blbla6h2MMfFzrHVf",
-        "usdz": "https://drive.google.com/uc?export=download&id=1i-Evet1pokp9AUuTBN6wGberm-yXcwfR",  # optional for iPhone
+        "glb": "https://xgbpwajpbublptjbaose.supabase.co/storage/v1/object/public/models/burger.glb",
+        "usdz": "https://xgbpwajpbublptjbaose.supabase.co/storage/v1/object/public/models/burger.usdz",  # optional for iPhone
         "scale": "0.2 0.2 0.2",
     },
     "momo": {
         "slug": "momo",
         "name": "Momos",
-        "glb": "https://drive.google.com/uc?export=download&id=1crOsN0blLGS5lEknDzPv-SkxdMP1Gpwm",
-        "usdz": "https://drive.google.com/uc?export=download&id=1ezWmxqnx6rJbiKag-y5cZONAMBXxXJbm",
+        "glb": "https://xgbpwajpbublptjbaose.supabase.co/storage/v1/object/public/models/momo.glb",
+        "usdz": "https://xgbpwajpbublptjbaose.supabase.co/storage/v1/object/public/models/momo.usdz",
         "scale": "0.18 0.18 0.18",
     },
     "wrap": {
