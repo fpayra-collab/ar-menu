@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+    </script>
+    <style>
+      html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; }
+      #container { position:relative; width:100%; height:100%; }
+      model-viewer { width:100%; height:100%; background-color:#f0f0f0; }
+      #dish-name { position:absolute; top:12px; left:12px; color:#333; font-weight:bold; }
+      .nav-btn {
+        position:absolute; bottom:16px;
+        padding:8px 14px; border:none; border-radius:20px;
+        background:#333; color:#fff; font-size:13px;
+      }
+      #prev { left:12px; }
+      #next { right:12px; }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="dish-name"></div>
+
+      <model-viewer id="viewer"
+                    ar
+                    ar-modes="scene-viewer webxr quick-look"
+                    camera-controls
+                    autoplay
+                    environment-image="neutral">
+        <button slot="ar-button" id="ar-button"
+                style="position:absolute; bottom:16px; left:50%;
+                       transform:translateX(-50%); padding:10px 16px;
+                       border-radius:20px; border:none; background:#007bff;
+                       color:#fff; font-size:14px;">
+          View in your space
+        </button>
+      </model-viewer>
+
+      <button id="prev" class="nav-btn">&laquo; Prev</button>
+      <button id="next" class="nav-btn">Next &raquo;</button>
+    </div>
+
+    <script>
+      const dishes = {{ dishes|tojson }};
+      let idx = 0;
+
+      const viewer = document.getElementById('viewer');
+      const nameEl = document.getElementById('dish-name');
+
+      function showDish(i) {
+        const d = dishes[i];
+        viewer.src = d.glb;
+        if (d.usdz) viewer.setAttribute('ios-src', d.usdz);
+        else viewer.removeAttribute('ios-src');
+        if (d.scale) viewer.setAttribute('scale', d.scale);
+        nameEl.textContent = d.name;
+      }
+
+      document.getElementById('next').onclick = () => {
+        idx = (idx + 1) % dishes.length;
+        showDish(idx);
+      };
+      document.getElementById('prev').onclick = () => {
+        idx = (idx - 1 + dishes.length) % dishes.length;
+        showDish(idx);
+      };
+
+      showDish(idx);
+    </script>
+  </body>
+</html>
